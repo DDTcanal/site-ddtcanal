@@ -4,7 +4,7 @@ backend:
   repo: DDTCANAL/site-ddtcanal
   branch: main
   auth_type: "pkce" 
-  app_id: SEU_CLIENT_ID_DO_AUTH0 # <-- COLE SEU CLIENT ID AQUI
+  app_id: HT2e50CNZKjIpq7dGFLuDiQe47KhCS5y # <-- COLE SEU CLIENT ID AQUI
 
 media_folder: "assets/images" 
 public_folder: "/assets/images"
