@@ -1,16 +1,16 @@
-# URL do seu site, para o preview funcionar. Altere se for diferente.
-local_backend: true
+# ARQUIVO FINAL PARA NETLIFY COM AUTH0
 backend:
   name: github
-  # A linha abaixo já está corrigida para você.
-  repo: DDTcanal/site-ddtcanal 
+  repo: DDTCANAL/site-ddtcanal
   branch: main
+  auth_type: "pkce" 
+  app_id: SEU_CLIENT_ID_DO_AUTH0 # <-- COLE SEU CLIENT ID AQUI
 
-# Endereço onde o site está publicado
 media_folder: "assets/images" 
 public_folder: "/assets/images"
 
 collections:
+  # ... (o resto do arquivo, com as collections, continua igual)
   - name: "noticias" 
     label: "Notícias" 
     folder: "_content/noticias" 
@@ -22,7 +22,6 @@ collections:
       - {label: "Imagem de Capa", name: "thumbnail", widget: "image"}
       - {label: "Resumo", name: "description", widget: "text"}
       - {label: "Conteúdo", name: "body", widget: "markdown"}
-
   - name: "celulares"
     label: "Reviews de Celulares"
     folder: "_content/celulares"
@@ -34,7 +33,6 @@ collections:
       - {label: "Imagem Principal", name: "thumbnail", widget: "image"}
       - {label: "Resumo da Análise", name: "description", widget: "text"}
       - {label: "Análise Completa", name: "body", widget: "markdown"}
-
   - name: "fones"
     label: "Reviews de Fones de Ouvido"
     folder: "_content/fones"
@@ -46,7 +44,6 @@ collections:
       - {label: "Imagem Principal", name: "thumbnail", widget: "image"}
       - {label: "Resumo da Análise", name: "description", widget: "text"}
       - {label: "Análise Completa", name: "body", widget: "markdown"}
-
   - name: "achados"
     label: "Achados no AliExpress"
     folder: "_content/achados"
