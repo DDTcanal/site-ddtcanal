@@ -3,7 +3,7 @@ local_backend: true
 backend:
   name: github
   # A linha abaixo já está corrigida para você.
-  repo: DDTCANAL/site-ddtcanal 
+  repo: DDTcanal/site-ddtcanal 
   branch: main
 
 # Endereço onde o site está publicado
