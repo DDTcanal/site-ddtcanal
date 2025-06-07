@@ -1,0 +1,61 @@
+# URL do seu site, para o preview funcionar. Altere se for diferente.
+local_backend: true
+backend:
+  name: github
+  # IMPORTANTE: Substitua 'SEU-USUARIO/SEU-REPOSITORIO' pelo seu usuário e nome do repo no GitHub
+  repo: SEU-USUARIO/SEU-REPOSITORIO 
+  branch: main # ou a branch que você usa como principal
+
+# Endereço onde o site está publicado
+media_folder: "assets/images" # Onde as imagens serão salvas
+public_folder: "/assets/images" # Como o site irá acessar as imagens
+
+collections:
+  - name: "noticias" # Usado na API
+    label: "Notícias" # Usado na UI
+    folder: "_content/noticias" # Onde os arquivos serão salvos
+    create: true # Permite criar novos documentos
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Nome do arquivo
+    fields: # Os campos de cada post
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Data de Publicação", name: "date", widget: "datetime"}
+      - {label: "Imagem de Capa", name: "thumbnail", widget: "image"}
+      - {label: "Resumo", name: "description", widget: "text"}
+      - {label: "Conteúdo", name: "body", widget: "markdown"}
+
+  - name: "celulares"
+    label: "Reviews de Celulares"
+    folder: "_content/celulares"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Modelo do Celular", name: "title", widget: "string"}
+      - {label: "Data da Análise", name: "date", widget: "datetime"}
+      - {label: "Imagem Principal", name: "thumbnail", widget: "image"}
+      - {label: "Resumo da Análise", name: "description", widget: "text"}
+      - {label: "Análise Completa", name: "body", widget: "markdown"}
+
+  - name: "fones"
+    label: "Reviews de Fones de Ouvido"
+    folder: "_content/fones"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Modelo do Fone", name: "title", widget: "string"}
+      - {label: "Data da Análise", name: "date", widget: "datetime"}
+      - {label: "Imagem Principal", name:- {label: "Modelo do Fone", name: "title", widget: "string"}
+      - {label: "Data da Análise", name: "date", widget: "datetime"}
+      - {label: "Imagem Principal", name: "thumbnail", widget: "image"}
+      - {label: "Resumo da Análise", name: "description", widget: "text"}
+      - {label: "Análise Completa", name: "body", widget: "markdown"}
+
+  - name: "achados"
+    label: "Achados no AliExpress"
+    folder: "_content/achados"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Nome do Produto", name: "title", widget: "string"}
+      - {label: "Imagem do Produto", name: "thumbnail", widget: "image"}
+      - {label: "Descrição Curta", name: "description", widget: "text"}
+      - {label: "Link do Produto", name: "link", widget: "string"}
