@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PortalDDT - Notícias de Tecnologia, Celulares e Mais</title>
     <meta name="description" content="Seu portal brasileiro de notícias sobre tecnologia, lançamentos de celulares, fones de ouvido e os melhores achados do AliExpress.">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -18,32 +20,49 @@
                         'portal-gray': '#f0f2f5',
                         'portal-text': '#333333',
                     },
-                    boxShadow: { 'portal': '0 4px 15px rgba(0, 0, 0, 0.08)', },
-                    borderRadius: { 'portal': '12px', }
+                    boxShadow: {
+                        'portal': '0 4px 15px rgba(0, 0, 0, 0.08)',
+                    },
+                    borderRadius: {
+                        'portal': '12px',
+                    }
                 }
             }
         }
     </script>
+
+    <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
         html { scroll-behavior: smooth; }
         body { font-family: 'Poppins', sans-serif; }
     </style>
 </head>
 <body class="bg-portal-gray text-portal-text">
+    
+    <!-- Header -->
     <header class="header bg-white fixed top-0 left-0 w-full z-50 shadow-md">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-3">
-                <a href="#" class="logo text-2xl font-bold no-underline text-portal-dark">Portal<span class="text-portal-red">DDT</span></a>
+                <a href="#" class="logo text-2xl font-bold no-underline text-portal-dark">
+                    Portal<span class="text-portal-red">DDT</span>
+                </a>
+
+                <!-- Desktop Navigation -->
                 <nav class="hidden lg:flex gap-6 items-center">
                     <a href="#noticias" class="nav-link text-portal-dark hover:text-portal-red font-semibold transition">Notícias</a>
                     <a href="#celulares" class="nav-link text-portal-dark hover:text-portal-red font-semibold transition">Celulares</a>
                     <a href="#fones" class="nav-link text-portal-dark hover:text-portal-red font-semibold transition">Fones</a>
                     <a href="#achados" class="nav-link text-portal-dark hover:text-portal-red font-semibold transition">AliExpress</a>
                 </nav>
+                
+                <!-- Mobile Menu Button -->
                 <button class="hamburger-menu flex flex-col justify-around w-8 h-8 bg-transparent border-none cursor-pointer z-10 lg:hidden" id="hamburger">
                     <span class="bar block w-full h-0.5 bg-portal-dark rounded-md"></span>
                     <span class="bar block w-full h-0.5 bg-portal-dark rounded-md mt-1.5"></span>
@@ -51,6 +70,8 @@
                 </button>
             </div>
         </div>
+        
+        <!-- Mobile Navigation -->
         <nav class="main-nav fixed top-0 left-0 h-full w-64 bg-portal-dark p-0 transform -translate-x-full transition-transform z-40" id="mainNav">
              <ul class="pt-16">
                 <li class="border-b border-gray-700"><a href="#noticias" class="block py-4 px-8 text-gray-300 hover:bg-portal-red">Notícias</a></li>
@@ -60,8 +81,12 @@
              </ul>
         </nav>
     </header>
+
+    <!-- Main Content -->
     <main class="pt-24 pb-16">
         <div class="container mx-auto px-4">
+
+            <!-- Notícias Section -->
             <section id="noticias" class="mb-16">
                 <h2 class="text-2xl md:text-3xl font-bold mb-6 pb-2 border-b-4 border-portal-yellow inline-block">Últimas Notícias</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -70,6 +95,8 @@
                     <article class="card bg-white shadow-portal rounded-xl overflow-hidden"><img src="https://placehold.co/600x400/FFD700/121212?text=Futuro" class="w-full h-48 object-cover"><div class="p-5"><h3 class="text-xl font-bold mb-2">O Futuro do Trabalho Remoto</h3><p class="text-gray-600 mb-4">Análise das principais ferramentas de colaboração.</p><a href="#" class="btn bg-portal-yellow hover:bg-portal-red hover:text-white text-portal-dark font-semibold py-2 px-4 rounded-lg">Ler mais</a></div></article>
                 </div>
             </section>
+
+            <!-- Celulares Section -->
             <section id="celulares" class="mb-16">
                 <h2 class="text-2xl md:text-3xl font-bold mb-6 pb-2 border-b-4 border-portal-yellow inline-block">Análises de Celulares</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -78,9 +105,66 @@
                      <article class="card bg-white shadow-portal rounded-xl overflow-hidden"><img src="https://placehold.co/600x400/e74c3c/FFFFFF?text=Lançamento" class="w-full h-48 object-cover"><div class="p-5"><h3 class="text-xl font-bold mb-2">Vazamento do "ZenPhone"</h3><p class="text-gray-600 mb-4">Imagens revelam design do aguardado lançamento.</p><a href="#" class="btn bg-portal-yellow hover:bg-portal-red hover:text-white text-portal-dark font-semibold py-2 px-4 rounded-lg">Ler mais</a></div></article>
                 </div>
             </section>
+
+            <!-- Fones de Ouvido Section -->
             <section id="fones" class="mb-16">
                 <h2 class="text-2xl md:text-3xl font-bold mb-6 pb-2 border-b-4 border-portal-yellow inline-block">Fones de Ouvido</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <article class="card bg-white shadow-portal rounded-xl overflow-hidden"><img src="https://placehold.co/600x400/9b59b6/FFFFFF?text=TWS" class="w-full h-48 object-cover"><div class="p-5"><h3 class="text-xl font-bold mb-2">Top 5 Fones TWS Custo-Benefício</h3><p class="text-gray-600 mb-4">Opções boas e baratas que não vão esvaziar sua carteira.</p><a href="#" class="btn bg-portal-yellow hover:bg-portal-red hover:text-white text-portal-dark font-semibold py-2 px-4 rounded-lg">Ler mais</a></div></article>
                     <article class="card bg-white shadow-portal rounded-xl overflow-hidden"><img src="https://placehold.co/600x400/f1c40f/121212?text=Headphone" class="w-full h-48 object-cover"><div class="p-5"><h3 class="text-xl font-bold mb-2">Análise: "SoundPro X"</h3><p class="text-gray-600 mb-4">O novo rei do cancelamento de ruído?</p><a href="#" class="btn bg-portal-yellow hover:bg-portal-red hover:text-white text-portal-dark font-semibold py-2 px-4 rounded-lg">Ler mais</a></div></article>
-                    <article class="card bg-white shadow-portal rounded-xl overflow-hidden"><img src="https://placehold.co/600x400/1abc9c/FFFFFF?text=Dica" class="w-full h-48 object-cover"><div class="p-5"><h3 class="text-xl font-bold mb-2">Como Escolher Fone para Esportes</h3><p class="text-gray-600 mb-4">Saiba o que observar ao comprar fones para treinos.</p><a href="#" class="btn bg-portal-yellow hover:bg-portal-red hover:text-white text-portal-dark font-semibold py-2 px-4 rounded-
+                    <article class="card bg-white shadow-portal rounded-xl overflow.hidden"><img src="https://placehold.co/600x400/1abc9c/FFFFFF?text=Dica" class="w-full h-48 object-cover"><div class="p-5"><h3 class="text-xl font-bold mb-2">Como Escolher Fone para Esportes</h3><p class="text-gray-600 mb-4">Saiba o que observar ao comprar fones para treinos.</p><a href="#" class="btn bg-portal-yellow hover:bg-portal-red hover:text-white text-portal-dark font-semibold py-2 px-4 rounded-lg">Ler mais</a></div></article>
+                </div>
+            </section>
+            
+            <!-- Achados no AliExpress Section -->
+            <section id="achados" class="mb-16">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 pb-2 border-b-4 border-portal-yellow inline-block">Achados no AliExpress</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <article class="card bg-white shadow-portal rounded-xl overflow-hidden flex flex-col"><img src="https://placehold.co/600x400/FF4747/FFFFFF?text=GameSir+G8" alt="GameSir G8 Plus" class="w-full h-48 object-cover"><div class="p-5 flex flex-col flex-grow"><h3 class="text-xl font-bold mb-2">Controle GameSir G8 Plus</h3><p class="text-gray-600 mb-4 flex-grow">Transforme seu celular em um console portátil com este controle de alta performance.</p><a href="https://s.click.aliexpress.com/e/_mL1n0oP" target="_blank" rel="noopener noreferrer" class="btn bg-portal-red text-white font-semibold py-2 px-4 rounded-lg w-full text-center mt-auto">Ver no AliExpress</a></div></article>
+                    <article class="card bg-white shadow-portal rounded-xl overflow-hidden flex flex-col"><img src="https://placehold.co/600x400/FF4747/FFFFFF?text=Lenovo+GM2" alt="Fone Lenovo GM2 Pro Max" class="w-full h-48 object-cover"><div class="p-5 flex flex-col flex-grow"><h3 class="text-xl font-bold mb-2">Fone Lenovo GM2 Pro Max</h3><p class="text-gray-600 mb-4 flex-grow">Fone TWS com baixa latência, ideal para jogos e uso no dia a dia.</p><a href="https://s.click.aliexpress.com/e/_mPBU2IF" target="_blank" rel="noopener noreferrer" class="btn bg-portal-red text-white font-semibold py-2 px-4 rounded-lg w-full text-center mt-auto">Ver no AliExpress</a></div></article>
+                    <article class="card bg-white shadow-portal rounded-xl overflow-hidden flex flex-col"><img src="https://placehold.co/600x400/FF4747/FFFFFF?text=Anker+Q30" alt="Anker Q30" class="w-full h-48 object-cover"><div class="p-5 flex flex-col flex-grow"><h3 class="text-xl font-bold mb-2">Headphone Anker Q30</h3><p class="text-gray-600 mb-4 flex-grow">Cancelamento de ruído híbrido e som de alta resolução, disponível no Brasil.</p><a href="https://s.click.aliexpress.com/e/_mrNbPrh" target="_blank" rel="noopener noreferrer" class="btn bg-portal-red text-white font-semibold py-2 px-4 rounded-lg w-full text-center mt-auto">Ver no AliExpress</a></div></article>
+                    <article class="card bg-white shadow-portal rounded-xl overflow-hidden flex flex-col"><img src="https://placehold.co/600x400/FF4747/FFFFFF?text=AKG+USB-C" alt="Fone AKG USB-C" class="w-full h-48 object-cover"><div class="p-5 flex flex-col flex-grow"><h3 class="text-xl font-bold mb-2">Fone AKG USB-C</h3><p class="text-gray-600 mb-4 flex-grow">Qualidade de som AKG com conexão USB-C, a um preço imbatível.</p><a href="https://s.click.aliexpress.com/e/_mt4jGWF" target="_blank" rel="noopener noreferrer" class="btn bg-portal-red text-white font-semibold py-2 px-4 rounded-lg w-full text-center mt-auto">Ver no AliExpress</a></div></article>
+                    <article class="card bg-white shadow-portal rounded-xl overflow-hidden flex flex-col"><img src="https://placehold.co/600x400/FF4747/FFFFFF?text=QCY+Melobuds" alt="QCY Melobuds Neo" class="w-full h-48 object-cover"><div class="p-5 flex flex-col flex-grow"><h3 class="text-xl font-bold mb-2">QCY Melobuds Neo</h3><p class="text-gray-600 mb-4 flex-grow">Excelente custo-benefício em fones TWS, com design moderno e som de qualidade.</p><a href="https://s.click.aliexpress.com/e/_mPC4aMX" target="_blank" rel="noopener noreferrer" class="btn bg-portal-red text-white font-semibold py-2 px-4 rounded-lg w-full text-center mt-auto">Ver no AliExpress</a></div></article>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer bg-portal-dark text-gray-300 py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-white text-xl font-bold mb-4">Portal<span class="text-portal-yellow">DDT</span></h3>
+            <div class="flex justify-center gap-6 mb-6">
+                <a href="https://youtube.com/@ddtcanal?si=KJWtlX3IxzJj8GWX" target="_blank" rel="noopener noreferrer" class="text-2xl text-gray-300 hover:text-portal-yellow transition-colors"><i class="fab fa-youtube"></i></a>
+                <a href="https://x.com/gutto777" target="_blank" rel="noopener noreferrer" class="text-2xl text-gray-300 hover:text-portal-yellow transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://t.me/hotpremium" target="_blank" rel="noopener noreferrer" class="text-2xl text-gray-300 hover:text-portal-yellow transition-colors"><i class="fab fa-telegram"></i></a>
+            </div>
+            <p class="text-sm text-gray-400">© PortalDDT <span id="currentYear"></span> - Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const mainNav = document.getElementById('mainNav');
+        const navLinks = mainNav.querySelectorAll('a');
+        
+        hamburger.addEventListener('click', () => {
+            mainNav.classList.toggle('translate-x-0');
+            mainNav.classList.toggle('-translate-x-full');
+        });
+
+        // Close mobile menu on link click
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('translate-x-0');
+                mainNav.classList.add('-translate-x-full');
+            });
+        });
+        
+        // Dynamic Year in Footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
