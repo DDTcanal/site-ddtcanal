@@ -1,86 +1,38 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Painel de Conteúdo | PortalDDT</title>
+  
+  <!-- Carrega o CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 20px; }
+  </style>
 </head>
 <body>
-  <!-- O CMS será carregado aqui -->
+  <div id="cms-root"></div> <!-- Container obrigatório -->
 
-  <!-- 1. Carrega a biblioteca do CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  
-  <!-- 2. Inicializa o CMS com a configuração embutida -->
   <script>
-    var config = {
-      backend: {
-        name: "github",
-        repo: "DDTCANAL/site-ddtcanal",
-        branch: "main"
-      },
-      media_folder: "assets/images",
-      public_folder: "/assets/images",
-      collections: [
-        {
-          name: "noticias",
-          label: "Notícias",
-          folder: "_content/noticias",
-          create: true,
-          slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
-          fields: [
-            { label: "Título", name: "title", widget: "string" },
-            { label: "Data de Publicação", name: "date", widget: "datetime" },
-            { label: "Imagem de Capa", name: "thumbnail", widget: "image" },
-            { label: "Resumo", name: "description", widget: "text" },
-            { label: "Conteúdo", name: "body", widget: "markdown" }
-          ]
-        },
-        {
-          name: "celulares",
-          label: "Reviews de Celulares",
-          folder: "_content/celulares",
-          create: true,
-          slug: "{{slug}}",
-          fields: [
-            { label: "Modelo do Celular", name: "title", widget: "string" },
-            { label: "Data da Análise", name: "date", widget: "datetime" },
-            { label: "Imagem Principal", name: "thumbnail", widget: "image" },
-            { label: "Resumo da Análise", name: "description", widget: "text" },
-            { label: "Análise Completa", name: "body", widget: "markdown" }
-          ]
-        },
-        {
-          name: "fones",
-          label: "Reviews de Fones de Ouvido",
-          folder: "_content/fones",
-          create: true,
-          slug: "{{slug}}",
-          fields: [
-            { label: "Modelo do Fone", name: "title", widget: "string" },
-            { label: "Data da Análise", name: "date", widget: "datetime" },
-            { label: "Imagem Principal", name: "thumbnail", widget: "image" },
-            { label: "Resumo da Análise", name: "description", widget: "text" },
-            { label: "Análise Completa", name: "body", widget: "markdown" }
-          ]
-        },
-        {
-          name: "achados",
-          label: "Achados no AliExpress",
-          folder: "_content/achados",
-          create: true,
-          slug: "{{slug}}",
-          fields: [
-            { label: "Nome do Produto", name: "title", widget: "string" },
-            { label: "Imagem do Produto", name: "thumbnail", widget: "image" },
-            { label: "Descrição Curta", name: "description", widget: "text" },
-            { label: "Link do Produto", name: "link", widget: "string" }
+    document.addEventListener('DOMContentLoaded', () => {
+      CMS.init({
+        config: {
+          backend: {
+            name: "github",
+            repo: "DDTCANAL/site-ddtcanal",
+            branch: "main",
+            base_url: "https://vercel.com", // ADD ESSA LINHA
+            auth_endpoint: "api/auth" // ADD ESSA LINHA
+          },
+          media_folder: "assets/images",
+          public_folder: "/assets/images",
+          collections: [ 
+            // SUAS CONFIGURAÇÕES ATUAIS AQUI (não mude)
           ]
         }
-      ]
-    };
-
-    CMS.init({ config });
+      });
+    });
   </script>
 </body>
 </html>
