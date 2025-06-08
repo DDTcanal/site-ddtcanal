@@ -1,27 +1,25 @@
-# ARQUIVO FINAL PARA NETLIFY COM AUTH0
+# ARQUIVO DEFINITIVO E UNIVERSAL
 backend:
   name: github
   repo: DDTCANAL/site-ddtcanal
   branch: main
-  auth_type: "pkce" 
-  app_id: HT2e50CNZKjIpq7dGFLuDiQe47KhCS5y # <-- COLE SEU CLIENT ID AQUI
 
-media_folder: "assets/images" 
+media_folder: "assets/images"
 public_folder: "/assets/images"
 
 collections:
-  # ... (o resto do arquivo, com as collections, continua igual)
-  - name: "noticias" 
-    label: "Notícias" 
-    folder: "_content/noticias" 
-    create: true 
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" 
+  - name: "noticias"
+    label: "Notícias"
+    folder: "_content/noticias"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - {label: "Título", name: "title", widget: "string"}
       - {label: "Data de Publicação", name: "date", widget: "datetime"}
       - {label: "Imagem de Capa", name: "thumbnail", widget: "image"}
       - {label: "Resumo", name: "description", widget: "text"}
       - {label: "Conteúdo", name: "body", widget: "markdown"}
+
   - name: "celulares"
     label: "Reviews de Celulares"
     folder: "_content/celulares"
@@ -33,6 +31,7 @@ collections:
       - {label: "Imagem Principal", name: "thumbnail", widget: "image"}
       - {label: "Resumo da Análise", name: "description", widget: "text"}
       - {label: "Análise Completa", name: "body", widget: "markdown"}
+
   - name: "fones"
     label: "Reviews de Fones de Ouvido"
     folder: "_content/fones"
@@ -44,6 +43,7 @@ collections:
       - {label: "Imagem Principal", name: "thumbnail", widget: "image"}
       - {label: "Resumo da Análise", name: "description", widget: "text"}
       - {label: "Análise Completa", name: "body", widget: "markdown"}
+
   - name: "achados"
     label: "Achados no AliExpress"
     folder: "_content/achados"
