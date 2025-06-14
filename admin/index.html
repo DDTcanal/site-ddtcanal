@@ -1,56 +1,39 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Painel de Conteúdo | PortalDDT</title>
-  
-  <!-- Carrega o Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      padding: 20px;
-      background-color: #f4f4f4;
-    }
-  </style>
 </head>
 <body>
-  <div id="cms-root"></div> <!-- Container obrigatório do CMS -->
-
+  <!-- Decap CMS injects its UI here -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      CMS.init({
-        config: {
-          // Usa a integração nativa da Vercel/GitHub. É mais simples e robusto.
-          // Não precisa de base_url ou auth_endpoint aqui.
-          backend: {
-            name: "github",
-            repo: "DDTCANAL/site-ddtcanal",   // Seu repositório
-            branch: "main",                   // Seu branch
+    CMS.init({
+      config: {
+        backend: {
+          name: "github",
+          repo: "DDTCANAL/site-ddtcanal",
+          branch: "main",
+        },
+        media_folder: "assets/images",
+        public_folder: "/assets/images",
+        collections: [
+          {
+            name: "posts",
+            label: "Notícias",
+            folder: "_content/posts",
+            create: true,
+            slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
+            fields: [
+              { label: "Título", name: "title", widget: "string" },
+              { label: "Data", name: "date", widget: "datetime" },
+              { label: "Imagem de capa", name: "thumbnail", widget: "image" },
+              { label: "Corpo", name: "body", widget: "markdown" },
+            ],
           },
-          media_folder: "assets/images",        // Pasta para salvar as imagens
-          public_folder: "/assets/images",      // Como o site vai acessar as imagens
-          site_url: "https://site-ddtcanal.vercel.app", // URL do seu site
-          collections: [
-            {
-              name: "posts",
-              label: "Notícias",
-              folder: "_content/posts", // Pasta onde os arquivos .md serão salvos
-              create: true,
-              slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
-              fields: [
-                { label: "Título", name: "title", widget: "string" },
-                { label: "Data", name: "date", widget: "datetime" },
-                { label: "Imagem de capa (Thumbnail)", name: "thumbnail", widget: "image" },
-                { label: "Corpo do post", name: "body", widget: "markdown" }
-              ]
-            }
-          ]
-        }
-      });
+        ],
+      },
     });
-  </script>
-</body>
+  </script></body>
 </html>
