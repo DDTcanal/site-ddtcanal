@@ -1,20 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex"> <!-- Impede o Google de indexar seu admin -->
   <title>Painel de Conteúdo | PortalDDT</title>
+  
+  <!-- Carrega o script do Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
 </head>
 <body>
-  <!-- Decap CMS injects its UI here -->
+  <!-- ESTA É A DIV QUE ESTAVA FALTANDO. O CMS PRECISA DELA PARA FUNCIONAR -->
+  <div id="cms-root"></div>
+
+  <!-- Script de inicialização com a sua configuração -->
   <script>
     CMS.init({
       config: {
         backend: {
           name: "github",
-          repo: "DDTCANAL/site-ddtcanal",
-          branch: "main",
+          repo: "DDTCANAL/site-ddtcanal", // Seu repositório
+          branch: "main",                 // Seu branch
         },
         media_folder: "assets/images",
         public_folder: "/assets/images",
@@ -35,5 +42,6 @@
         ],
       },
     });
-  </script></body>
+  </script>
+</body>
 </html>
