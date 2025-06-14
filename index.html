@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PortalDDT - Notícias de Tecnologia, Celulares e Mais</title>
   <meta name="description" content="Seu portal brasileiro de notícias sobre tecnologia, lançamentos de celulares, fones de ouvido e os melhores achados do AliExpress."/>
-
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -20,59 +18,33 @@
             'portal-gray': '#f0f2f5',
             'portal-text': '#333333',
           },
-          boxShadow: {
-            'portal': '0 4px 15px rgba(0, 0, 0, 0.08)',
-          },
-          borderRadius: {
-            'portal': '12px',
-          },
-          fontFamily: {
-            poppins: ['Poppins', 'sans-serif'],
-          }
+          fontFamily: { poppins: ['Poppins', 'sans-serif'] }
         }
       }
     }
   </script>
-
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
-
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Poppins', sans-serif; }
-    /* ESTILO DO DEGRADÊ ADICIONADO AQUI */
-    .header-gradient {
-      background-image: linear-gradient(to right, #FFD700, #E60023);
-    }
-    .header-gradient h1 {
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-    }
+    .header-gradient { background-image: linear-gradient(to right, #FFD700, #E60023); }
+    .header-gradient h1 { text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
   </style>
 </head>
 <body class="bg-portal-gray text-portal-text">
-  <!-- Menu Mobile -->
-  <button id="hamburger" class="fixed top-4 left-4 z-50 p-3 rounded-full bg-portal-yellow text-portal-dark md:hidden shadow-lg" aria-label="Abrir menu">
-    <i class="fas fa-bars"></i>
-  </button>
-
-  <nav id="mainNav" class="fixed top-0 left-0 w-64 h-full bg-white shadow-portal transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden z-40">
-    <div class="p-6 border-b">
-        <h2 class="text-xl font-bold text-portal-dark">Portal<span class="text-portal-red">DDT</span></h2>
-    </div>
+  <button id="hamburger" class="fixed top-4 left-4 z-50 p-3 rounded-full bg-portal-yellow text-portal-dark md:hidden shadow-lg" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+  <nav id="mainNav" class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden z-40">
+    <div class="p-6 border-b"><h2 class="text-xl font-bold text-portal-dark">Portal<span class="text-portal-red">DDT</span></h2></div>
     <ul class="flex flex-col p-6 space-y-4">
       <li><a href="#noticias" class="nav-link hover:text-portal-red font-semibold">Notícias</a></li>
       <li><a href="#analises" class="nav-link hover:text-portal-red font-semibold">Análises</a></li>
       <li><a href="#achados" class="nav-link hover:text-portal-red font-semibold">Achados AliExpress</a></li>
     </ul>
   </nav>
-
-  <!-- Cabeçalho -->
-  <header class="bg-white shadow-portal p-4 flex justify-between items-center sticky top-0 z-30">
+  <header class="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-30">
     <h1 class="text-2xl font-bold text-portal-dark">Portal<span class="text-portal-red">DDT</span></h1>
     <nav class="hidden md:flex space-x-8">
       <a href="#noticias" class="hover:text-portal-red font-medium text-lg">Notícias</a>
@@ -80,139 +52,67 @@
       <a href="#achados" class="hover:text-portal-red font-medium text-lg">Achados</a>
     </nav>
   </header>
-  
-  <!-- BANNER COM DEGRADÊ ADICIONADO AQUI -->
   <div class="header-gradient text-white text-center py-20 px-4">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">A tecnologia na palma da sua mão.</h1>
-      <p class="text-lg md:text-xl">Notícias, análises e os melhores achados da internet.</p>
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">A tecnologia na palma da sua mão.</h1>
+    <p class="text-lg md:text-xl">Notícias, análises e os melhores achados da internet.</p>
   </div>
-
-
   <main role="main" class="max-w-6xl mx-auto px-4 py-10 space-y-16">
-    <!-- Seção de Notícias (código completo na resposta anterior) -->
     <section id="noticias">
-      <h2 class="text-3xl font-bold mb-6 text-portal-dark">Últimas Notícias</h2>
+      <h2 class="text-3xl font-bold mb-8 text-portal-dark">Últimas Notícias</h2>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Notícia 1 -->
-        <article class="bg-white rounded-portal shadow-portal overflow-hidden flex flex-col hover:transform hover:-translate-y-1 transition-transform">
-          <img src="assets/images/noticia1.jpg" alt="Celular da Xiaomi em destaque" class="w-full h-48 object-cover"/>
-          <div class="p-5 flex-grow">
-            <h3 class="font-bold text-lg mb-2">Novo celular da Xiaomi surpreende com preço baixo</h3>
-            <p class="text-sm text-gray-600">A Xiaomi lançou um novo modelo com foco em custo-benefício, prometendo agitar o mercado de intermediários.</p>
-          </div>
+        <article class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col hover:transform hover:-translate-y-1 transition-transform duration-300">
+          <img src="assets/images/noticia1.jpg" alt="Celular da Xiaomi" class="w-full h-48 object-cover"/>
+          <div class="p-5 flex-grow"><h3 class="font-bold text-lg mb-2">Novo celular da Xiaomi surpreende</h3><p class="text-sm text-gray-600">Xiaomi lança novo modelo com foco em custo-benefício.</p></div>
         </article>
-        <!-- Outras notícias aqui -->
-        <article class="bg-white rounded-portal shadow-portal overflow-hidden flex flex-col hover:transform hover:-translate-y-1 transition-transform">
-          <img src="assets/images/noticia2.jpg" alt="Celular da linha Samsung Galaxy" class="w-full h-48 object-cover"/>
-          <div class="p-5 flex-grow">
-            <h3 class="font-bold text-lg mb-2">Samsung prepara linha Galaxy 2025 com IA</h3>
-            <p class="text-sm text-gray-600">Nova geração Galaxy deve vir equipada com recursos de inteligência artificial generativa, seguindo a tendência do mercado.</p>
-          </div>
+        <article class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col hover:transform hover:-translate-y-1 transition-transform duration-300">
+          <img src="assets/images/noticia2.jpg" alt="Celular Samsung Galaxy" class="w-full h-48 object-cover"/>
+          <div class="p-5 flex-grow"><h3 class="font-bold text-lg mb-2">Samsung prepara linha Galaxy 2025 com IA</h3><p class="text-sm text-gray-600">Geração Galaxy virá equipada com forte inteligência artificial.</p></div>
         </article>
-        <article class="bg-white rounded-portal shadow-portal overflow-hidden flex flex-col hover:transform hover:-translate-y-1 transition-transform">
-          <img src="assets/images/noticia3.jpg" alt="Ilustração de um iPhone dobrável" class="w-full h-48 object-cover"/>
-          <div class="p-5 flex-grow">
-            <h3 class="font-bold text-lg mb-2">Apple registra patente de iPhone dobrável</h3>
-            <p class="text-sm text-gray-600">Documento sugere que um modelo dobrável pode estar em desenvolvimento, mas não espere um lançamento para breve.</p>
-          </div>
+        <article class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col hover:transform hover:-translate-y-1 transition-transform duration-300">
+          <img src="assets/images/noticia3.jpg" alt="iPhone dobrável" class="w-full h-48 object-cover"/>
+          <div class="p-5 flex-grow"><h3 class="font-bold text-lg mb-2">Apple registra patente de iPhone dobrável</h3><p class="text-sm text-gray-600">Documento sugere que um modelo dobrável pode estar nos planos.</p></div>
         </article>
       </div>
     </section>
-
-    <!-- Seção de Análises (código completo na resposta anterior) -->
     <section id="analises">
-      <h2 class="text-3xl font-bold mb-6">Análises Recentes</h2>
+      <h2 class="text-3xl font-bold mb-8">Análises Recentes</h2>
       <div class="grid md:grid-cols-2 gap-8">
-        <article class="bg-white rounded-portal shadow-portal overflow-hidden hover:transform hover:-translate-y-1 transition-transform">
-          <img src="assets/images/analise1.jpg" alt="Imagem da análise do Galaxy S22" class="w-full h-56 object-cover"/>
-          <div class="p-5">
-            <h3 class="font-bold text-lg mb-2">Galaxy S22 Ultra ainda vale a pena em 2025?</h3>
-            <p class="text-sm text-gray-600">Testamos o modelo topo de linha da Samsung e contamos se ainda é uma boa compra.</p>
-          </div>
-        </article>
-        <article class="bg-white rounded-portal shadow-portal overflow-hidden hover:transform hover:-translate-y-1 transition-transform">
-          <img src="assets/images/analise2.jpg" alt="Imagem da análise do Poco X6 Pro" class="w-full h-56 object-cover"/>
-          <div class="p-5">
-            <h3 class="font-bold text-lg mb-2">Poco X6 Pro: potência e preço baixo</h3>
-            <p class="text-sm text-gray-600">Um dos melhores intermediários de 2025, com ótimo desempenho para jogos e tarefas do dia a dia.</p>
-          </div>
-        </article>
+        <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:transform hover:-translate-y-1 transition-transform duration-300"><img src="assets/images/analise1.jpg" alt="Análise Galaxy S22" class="w-full h-56 object-cover"/><div class="p-5"><h3 class="font-bold text-lg mb-2">Galaxy S22 Ultra ainda vale a pena em 2025?</h3><p class="text-sm text-gray-600">Testamos o topo de linha da Samsung e contamos se ainda é uma boa compra.</p></div></article>
+        <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:transform hover:-translate-y-1 transition-transform duration-300"><img src="assets/images/analise2.jpg" alt="Análise Poco X6 Pro" class="w-full h-56 object-cover"/><div class="p-5"><h3 class="font-bold text-lg mb-2">Poco X6 Pro: potência e preço baixo</h3><p class="text-sm text-gray-600">Um dos melhores intermediários de 2025, com ótimo desempenho.</p></div></article>
       </div>
     </section>
-
-    <!-- SEÇÃO DE ACHADOS CORRIGIDA COM MAIS ITENS -->
     <section id="achados">
-      <h2 class="text-3xl font-bold mb-6">Achados no AliExpress</h2>
+      <h2 class="text-3xl font-bold mb-8">Achados no AliExpress</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <!-- Achado 1 -->
-        <a href="SEU_LINK_DE_AFILIADO_AQUI" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-portal shadow-portal overflow-hidden hover:shadow-lg transition">
-          <img src="assets/images/achado1.jpg" alt="Fone de ouvido bluetooth" class="w-full h-40 object-cover"/>
-          <div class="p-3">
-            <p class="font-semibold text-sm">Fone Bluetooth 5.3 Estéreo</p>
-            <p class="text-xs text-portal-red font-bold">R$ 50,00</p>
-          </div>
-        </a>
-        <!-- Achado 2 -->
-        <a href="SEU_LINK_DE_AFILIADO_AQUI" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-portal shadow-portal overflow-hidden hover:shadow-lg transition">
-          <img src="assets/images/achado2.jpg" alt="Mini Projetor Portátil" class="w-full h-40 object-cover"/>
-          <div class="p-3">
-            <p class="font-semibold text-sm">Mini Projetor Portátil HD</p>
-            <p class="text-xs text-portal-red font-bold">R$ 250,00</p>
-          </div>
-        </a>
-        <!-- Achado 3 -->
-        <a href="SEU_LINK_DE_AFILIADO_AQUI" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-portal shadow-portal overflow-hidden hover:shadow-lg transition">
-          <img src="assets/images/achado3.jpg" alt="Smartwatch" class="w-full h-40 object-cover"/>
-          <div class="p-3">
-            <p class="font-semibold text-sm">Smartwatch com GPS</p>
-            <p class="text-xs text-portal-red font-bold">R$ 180,00</p>
-          </div>
-        </a>
-        <!-- Achado 4 -->
-        <a href="SEU_LINK_DE_AFILIADO_AQUI" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-portal shadow-portal overflow-hidden hover:shadow-lg transition">
-          <img src="assets/images/achado4.jpg" alt="Carregador Rápido" class="w-full h-40 object-cover"/>
-          <div class="p-3">
-            <p class="font-semibold text-sm">Carregador GaN 65W</p>
-            <p class="text-xs text-portal-red font-bold">R$ 90,00</p>
-          </div>
-        </a>
+        <a href="SEU_LINK_DE_AFILIADO_AQUI_1" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"><img src="assets/images/achado1.jpg" alt="Fone de ouvido" class="w-full h-40 object-cover"/><div class="p-3"><p class="font-semibold text-sm">Fone Bluetooth 5.3</p><p class="text-xs text-portal-red font-bold">R$ 50,00</p></div></a>
+        <a href="SEU_LINK_DE_AFILIADO_AQUI_2" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"><img src="assets/images/achado2.jpg" alt="Projetor portátil" class="w-full h-40 object-cover"/><div class="p-3"><p class="font-semibold text-sm">Mini Projetor Portátil</p><p class="text-xs text-portal-red font-bold">R$ 250,00</p></div></a>
+        <a href="SEU_LINK_DE_AFILIADO_AQUI_3" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"><img src="assets/images/achado3.jpg" alt="Smartwatch" class="w-full h-40 object-cover"/><div class="p-3"><p class="font-semibold text-sm">Smartwatch com GPS</p><p class="text-xs text-portal-red font-bold">R$ 180,00</p></div></a>
+        <a href="SEU_LINK_DE_AFILIADO_AQUI_4" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"><img src="assets/images/achado4.jpg" alt="Carregador rápido" class="w-full h-40 object-cover"/><div class="p-3"><p class="font-semibold text-sm">Carregador GaN 65W</p><p class="text-xs text-portal-red font-bold">R$ 90,00</p></div></a>
       </div>
     </section>
   </main>
-  
-  <!-- Omitindo o Rodapé e Scripts que continuam iguais -->
   <footer class="footer bg-portal-dark text-gray-300 py-12">
     <div class="container mx-auto px-4 text-center">
-        <h3 class="text-white text-xl font-bold mb-4">Portal<span class="text-portal-yellow">DDT</span></h3>
-        <div class="flex justify-center gap-6 mb-6">
-            <a href="https://youtube.com/@ddtcanal?si=KJWtlX3IxzJj8GWX" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="text-2xl text-gray-300 hover:text-portal-yellow transition-colors"><i class="fab fa-youtube"></i></a>
-            <a href="https://x.com/gutto777" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="text-2xl text-gray-300 hover:text-portal-yellow transition-colors"><i class="fab fa-twitter"></i></a>
-            <a href="https://t.me/hotpremium" target="_blank" rel="noopener noreferrer" aria-label="Telegram" class="text-2xl text-gray-300 hover:text-portal-yellow transition-colors"><i class="fab fa-telegram"></i></a>
-        </div>
-        <p class="text-sm text-gray-400">© PortalDDT <span id="currentYear"></span> - Todos os direitos reservados.</p>
+      <h3 class="text-white text-xl font-bold mb-4">Portal<span class="text-portal-yellow">DDT</span></h3>
+      <div class="flex justify-center gap-6 mb-6">
+        <a href="https://youtube.com/@ddtcanal?si=KJWtlX3IxzJj8GWX" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="text-2xl text-gray-300 hover:text-portal-yellow transition-colors"><i class="fab fa-youtube"></i></a>
+        <a href="https://x.com/gutto777" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="text-2xl text-gray-300 hover:text-portal-yellow transition-colors"><i class="fab fa-twitter"></i></a>
+        <a href="https://t.me/hotpremium" target="_blank" rel="noopener noreferrer" aria-label="Telegram" class="text-2xl text-gray-300 hover:text-portal-yellow transition-colors"><i class="fab fa-telegram"></i></a>
+      </div>
+      <p class="text-sm text-gray-400">© PortalDDT <span id="currentYear"></span> - Todos os direitos reservados.</p>
     </div>
   </footer>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const hamburger = document.getElementById('hamburger');
-        const mainNav = document.getElementById('mainNav');
-        if (hamburger && mainNav) {
-            const navLinks = mainNav.querySelectorAll('.nav-link');
-            hamburger.addEventListener('click', () => {
-                mainNav.classList.toggle('translate-x-0');
-                mainNav.classList.toggle('-translate-x-full');
-            });
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mainNav.classList.remove('translate-x-0');
-                    mainNav.classList.add('-translate-x-full');
-                });
-            });
-        }
-        const yearSpan = document.getElementById('currentYear');
-        if (yearSpan) {
-            yearSpan.textContent = new Date().getFullYear();
-        }
+      const hamburger = document.getElementById('hamburger');
+      const mainNav = document.getElementById('mainNav');
+      if (hamburger && mainNav) {
+        const navLinks = mainNav.querySelectorAll('.nav-link');
+        hamburger.addEventListener('click', () => { mainNav.classList.toggle('translate-x-0'); mainNav.classList.toggle('-translate-x-full'); });
+        navLinks.forEach(link => { link.addEventListener('click', () => { mainNav.classList.remove('translate-x-0'); mainNav.classList.add('-translate-x-full'); }); });
+      }
+      const yearSpan = document.getElementById('currentYear');
+      if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
     });
   </script>
 </body>
