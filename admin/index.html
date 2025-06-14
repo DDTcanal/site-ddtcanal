@@ -25,21 +25,20 @@
         config: {
           backend: {
             name: "github",
-            repo: "DDTCANAL/site-ddtcanal", // Nome do repositório no GitHub
-            branch: "main",                 // Branch padrão
-            base_url: "https://vercel.com", // Necessário para autenticação
-            auth_endpoint: "api/auth"       // Endpoint de autenticação personalizado
+            repo: "DDTCANAL/site-ddtcanal",   // Seu repositório no GitHub
+            branch: "main",                   // Branch principal
+            // A autenticação será gerenciada pela Vercel automaticamente com essa configuração
           },
-          media_folder: "assets/images",     // Pasta onde as imagens serão salvas
-          public_folder: "/assets/images",   // Caminho público para exibir imagens
-          site_url: "https://portalddt.vercel.app", // (Opcional) site principal
+          media_folder: "assets/images",        // Pasta onde as imagens serão salvas
+          public_folder: "/assets/images",      // Caminho público para exibir as imagens
+          site_url: "https://site-ddtcanal.vercel.app", // URL do seu site
           collections: [
             {
               name: "posts",
               label: "Notícias",
-              folder: "content/posts",
+              folder: "_content/posts", // CORRIGIDO: Aponta para a pasta correta no seu repositório
               create: true,
-              slug: "{{slug}}",
+              slug: "{{year}}-{{month}}-{{day}}-{{slug}}", // Slug com data, bom para organização
               fields: [
                 { label: "Título", name: "title", widget: "string" },
                 { label: "Data", name: "date", widget: "datetime" },
