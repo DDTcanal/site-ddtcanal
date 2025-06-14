@@ -23,27 +23,28 @@
     document.addEventListener('DOMContentLoaded', () => {
       CMS.init({
         config: {
+          // Usa a integração nativa da Vercel/GitHub. É mais simples e robusto.
+          // Não precisa de base_url ou auth_endpoint aqui.
           backend: {
             name: "github",
-            repo: "DDTCANAL/site-ddtcanal",   // Seu repositório no GitHub
-            branch: "main",                   // Branch principal
-            // A autenticação será gerenciada pela Vercel automaticamente com essa configuração
+            repo: "DDTCANAL/site-ddtcanal",   // Seu repositório
+            branch: "main",                   // Seu branch
           },
-          media_folder: "assets/images",        // Pasta onde as imagens serão salvas
-          public_folder: "/assets/images",      // Caminho público para exibir as imagens
+          media_folder: "assets/images",        // Pasta para salvar as imagens
+          public_folder: "/assets/images",      // Como o site vai acessar as imagens
           site_url: "https://site-ddtcanal.vercel.app", // URL do seu site
           collections: [
             {
               name: "posts",
               label: "Notícias",
-              folder: "_content/posts", // CORRIGIDO: Aponta para a pasta correta no seu repositório
+              folder: "_content/posts", // Pasta onde os arquivos .md serão salvos
               create: true,
-              slug: "{{year}}-{{month}}-{{day}}-{{slug}}", // Slug com data, bom para organização
+              slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
               fields: [
                 { label: "Título", name: "title", widget: "string" },
                 { label: "Data", name: "date", widget: "datetime" },
-                { label: "Imagem de capa", name: "thumbnail", widget: "image" },
-                { label: "Corpo", name: "body", widget: "markdown" }
+                { label: "Imagem de capa (Thumbnail)", name: "thumbnail", widget: "image" },
+                { label: "Corpo do post", name: "body", widget: "markdown" }
               ]
             }
           ]
