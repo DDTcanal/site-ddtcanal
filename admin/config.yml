@@ -1,14 +1,21 @@
 backend:
-  name: test-repo
+  name: github
+  repo: ddtcanal/site-ddtcanal # Nome do seu usuário/repositório
+  branch: main
 
 media_folder: "img/uploads"
 public_folder: "/img/uploads"
 
 collections:
   - name: "posts"
-    label: "Posts"
+    label: "Matérias do Portal"
     folder: "content/posts"
     create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { label: "Título", name: "title", widget: "string" }
-      - { label: "Conteúdo", name: "body", widget: "markdown" }
+      - { label: "Título da Matéria", name: "title", widget: "string" }
+      - { label: "Data de Publicação", name: "date", widget: "datetime" }
+      - { label: "Imagem de Capa (G1 Style)", name: "thumbnail", widget: "image" }
+      - { label: "Categoria", name: "category", widget: "select", options: ["Tecnologia", "Fones", "Games", "Vídeo"] }
+      - { label: "Breve Descrição (Subtítulo)", name: "description", widget: "string" }
+      - { label: "Texto da Matéria", name: "body", widget: "markdown" }
