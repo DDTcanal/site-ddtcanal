@@ -1,28 +1,147 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Atualizar o ano no rodapé
-    document.getElementById('ano').textContent = new Date().getFullYear();
+/* Importando uma fonte moderna */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap');
 
-    // 2. Dados das categorias
-    const categoriasDados = [
-        { nome: 'Tecnologia', icon: '💻', desc: 'As últimas novidades do mundo tech.' },
-        { nome: 'Celulares', icon: '📱', desc: 'Reviews e lançamentos de smartphones.' },
-        { nome: 'Fones', icon: '🎧', desc: 'O melhor da experiência sonora.' },
-        { nome: 'Xbox e Jogos', icon: '🎮', desc: 'Tudo sobre o universo gamer.' },
-        { nome: 'Ofertas DDT', icon: '🏷️', desc: 'Descontos exclusivos para inscritos.' },
-        { nome: 'Vídeos', icon: '📺', desc: 'Assista aos nossos conteúdos novos.' }
-    ];
+:root {
+    --primary: #00f2ff;
+    --accent: #7000ff;
+    --bg: #05070a;
+    --glass: rgba(255, 255, 255, 0.05);
+}
 
-    const container = document.getElementById('categorias');
+body {
+    background-color: var(--bg);
+    color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
 
-    // 3. Criar os cards dinamicamente
-    categoriasDados.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-            <div style="font-size: 2rem; margin-bottom: 15px;">${item.icon}</div>
-            <h3>${item.nome}</h3>
-            <p style="color: #94a3b8; font-size: 0.9rem;">${item.desc}</p>
-        `;
-        container.appendChild(card);
-    });
-});
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background: rgba(5, 7, 10, 0.8);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.menu-top a {
+    color: #94a3b8;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.menu-top a:hover {
+    color: var(--primary);
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+}
+
+/* Estilo para os Cards que o JS vai criar */
+#categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.card {
+    background: var(--glass);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 30px;
+    border-radius: 20px;
+    transition: transform 0.3s, border-color 0.3s;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.08);
+}/* Importando uma fonte moderna */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap');
+
+:root {
+    --primary: #00f2ff;
+    --accent: #7000ff;
+    --bg: #05070a;
+    --glass: rgba(255, 255, 255, 0.05);
+}
+
+body {
+    background-color: var(--bg);
+    color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background: rgba(5, 7, 10, 0.8);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.menu-top a {
+    color: #94a3b8;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.menu-top a:hover {
+    color: var(--primary);
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+}
+
+/* Estilo para os Cards que o JS vai criar */
+#categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.card {
+    background: var(--glass);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 30px;
+    border-radius: 20px;
+    transition: transform 0.3s, border-color 0.3s;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.08);
+}
