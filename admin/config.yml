@@ -1,7 +1,9 @@
 backend:
   name: github
-  repo: ddtcanal/site-ddtcanal # Nome do seu usuário/repositório
+  repo: ddtcanal/site-ddtcanal
   branch: main
+  auth_type: implicit
+  app_id: Ov23lieIzLWddjAnNRQw
 
 media_folder: "img/uploads"
 public_folder: "/img/uploads"
