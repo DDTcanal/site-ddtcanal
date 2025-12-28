@@ -3,28 +3,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PortalDDT - Início</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/main.js" defer></script>
+    <title>Portal DDT - Novo Layout</title>
+    <style>
+        /* --- VARIÁVEIS E BASE (Cores Neon & Performance) --- */
+        :root {
+            --bg-color: #121212; /* Fundo Dark Moderno */
+            --card-bg: #1E1E1E;
+            --text-main: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --neon-yellow: #EBFF00; /* Amarelo Cyberpunk */
+            --neon-red: #FF2A2A;    /* Vermelho Vivo */
+            --gap: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER (Existente) --- */
+        header {
+            background: #000;
+            padding: 20px;
+            border-bottom: 2px solid var(--neon-yellow);
+            text-align: center;
+        }
+        
+        /* --- ACTION BAR (Ofertas & Downloads) --- */
+        .action-bar {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 15px 0;
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #333;
+        }
+
+        .action-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .action-btn.ofertas:hover { background: var(--neon-yellow); color: #000; box-shadow: 0 0 15px var(--neon-yellow); }
+        .action-btn.downloads:hover { background: var(--neon-red); color: #000; box-shadow: 0 0 15px var(--neon-red); }
+
+        /* --- LAYOUT PRINCIPAL --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* --- HERO SECTION (As duas notícias grandes) --- */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Desktop: 50% 50% */
+            gap: var(--gap);
+            margin-bottom: 60px;
+        }
+
+        .hero-card {
+            position: relative;
+            height: 450px;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            group: 'hero';
+        }
+
+        .hero-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-card:hover img { transform: scale(1.05); }
+
+        .hero-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+        }
+
+        .hero-tag {
+            background: var(--neon-red);
+            color: white;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .hero-title { font-size: 2rem; font-weight: 800; line-height: 1.2; margin-bottom: 10px; }
+        .hero-desc { font-size: 1rem; color: #ddd; display: block; }
+
+        /* --- BLOCOS TEMÁTICOS --- */
+        .section-header {
+            border-left: 5px solid var(--neon-yellow);
+            padding-left: 15px;
+            margin-bottom: 20px;
+            margin-top: 40px;
+        }
+        
+        .section-title { font-size: 1.8rem; font-weight: 700; text-transform: uppercase; }
+
+        .blocks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--gap);
+        }
+
+        .small-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .small-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-bottom: 3px solid var(--neon-yellow);
+        }
+
+        .small-card img { width: 100%; height: 200px; object-fit: cover; }
+        .small-card-body { padding: 15px; }
+        .small-card h3 { font-size: 1.2rem; margin-bottom: 8px; }
+        .small-card p { font-size: 0.9rem; color: var(--text-secondary); }
+
+        /* --- CANAL DDT (Vídeo) --- */
+        .video-block {
+            grid-column: 1 / -1; /* Ocupa toda a largura */
+            background: #000;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* --- MOBILE LAYOUT (A mágica acontece aqui) --- */
+        @media (max-width: 768px) {
+            
+            /* Ajuste do Hero para Mobile */
+            .hero-section {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero-card {
+                height: 350px; /* Um pouco menor no mobile */
+                width: 100%;
+            }
+
+            /* Lógica da "Meia Notícia" / Translúcida */
+            .hero-card:nth-child(2) {
+                height: 200px; /* Menor visualmente */
+                opacity: 0.6; /* Translúcido como pedido */
+                transform: scale(0.98);
+                margin-top: -10px; /* Puxa um pouco para cima visualmente */
+                position: relative;
+            }
+
+            .hero-card:nth-child(2)::after {
+                content: "VEJA MAIS ABAIXO ↓";
+                position: absolute;
+                top: 50%; left: 50%;
+                transform: translate(-50%, -50%);
+                font-weight: bold;
+                color: white;
+                background: rgba(0,0,0,0.7);
+                padding: 10px 20px;
+                border-radius: 20px;
+                border: 1px solid var(--neon-yellow);
+            }
+
+            .hero-title { font-size: 1.5rem; }
+            .hero-desc { display: none; /* Esconde descrição no mobile para limpar */ }
+            
+            /* Action Bar no rodapé ou topo fixo menor */
+            .action-bar { padding: 10px; gap: 15px; font-size: 0.8rem; }
+            
+            .video-block { flex-direction: column; }
+        }
+    </style>
 </head>
 <body>
+
     <header>
-        <div class="logo">PortalDDT</div>
-        <nav class="menu-top">
-            <a href="#">Tecnologia</a>
-            <a href="#">Celulares</a>
-            <a href="#">Fones</a>
-            <a href="#">Xbox e Jogos</a>
-            <a href="#">Ofertas DDT</a>
-            <a href="#">Vídeos</a>
-        </nav>
+        <h1>LOGO PORTAL DDT</h1>
     </header>
-    <main>
-        <h1>Bem-vindo ao PortalDDT</h1>
-        <section id="categorias"></section>
+
+    <nav class="action-bar">
+        <a href="#" class="action-btn ofertas">🔥 Ofertas</a>
+        <a href="#" class="action-btn downloads">⬇ Downloads</a>
+    </nav>
+
+    <main class="container">
+        
+        <section class="hero-section">
+            <article class="hero-card">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" alt="Tech">
+                <div class="hero-content">
+                    <span class="hero-tag">Destaque</span>
+                    <h2 class="hero-title">A Revolução dos Processadores Híbridos chegou</h2>
+                    <p class="hero-desc">Análise completa do novo chip que promete mudar o mercado gamer.</p>
+                </div>
+            </article>
+
+            <article class="hero-card">
+                <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=800&q=80" alt="Setup">
+                <div class="hero-content">
+                    <span class="hero-tag">Games</span>
+                    <h2 class="hero-title">Setup Gamer Minimalista: Guia 2025</h2>
+                    <p class="hero-desc">Como montar um espaço limpo, funcional e com RGB na medida certa.</p>
+                </div>
+            </article>
+        </section>
+
+        <div class="section-header">
+            <h3 class="section-title">Tecnologia</h3>
+        </div>
+        <section class="blocks-grid">
+            <article class="small-card">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=60" alt="">
+                <div class="small-card-body">
+                    <h3>Review: Novo Teclado Mecânico</h3>
+                    <p>Vale a pena investir em switches ópticos?</p>
+                </div>
+            </article>
+            <article class="small-card">
+                <img src="https://images.unsplash.com/photo-1526045431048-f857369baa09?auto=format&fit=crop&w=400&q=60" alt="">
+                <div class="small-card-body">
+                    <h3>IA nos Smartphones</h3>
+                    <p>O que muda na fotografia móvel este ano.</p>
+                </div>
+            </article>
+            </section>
+
+        <div class="section-header" style="border-color: var(--neon-red);">
+            <h3 class="section-title">Canal DDT</h3>
+        </div>
+        <section class="video-block">
+            <div style="flex: 2;">
+                <div style="background: #333; height: 300px; display: flex; align-items: center; justify-content: center; color: #fff;">[IFRAME YOUTUBE AQUI]</div>
+            </div>
+            <div style="flex: 1;">
+                <h2 style="color: var(--neon-yellow);">Último Vídeo</h2>
+                <p style="margin-top: 10px; color: #ccc;">Acompanhe nossa análise completa sobre o hardware mais esperado do ano. Deixe seu like e inscreva-se.</p>
+                <button style="margin-top: 20px; padding: 10px 20px; background: var(--neon-red); border: none; color: white; font-weight: bold; cursor: pointer;">Ir para o Canal</button>
+            </div>
+        </section>
+
     </main>
-    <footer>
-        <p>© <span id="ano"></span> PortalDDT - Todos os direitos reservados</p>
-    </footer>
+
 </body>
 </html>
