@@ -2,8 +2,8 @@ backend:
   name: github
   repo: DDTCanal/site-ddtcanal
   branch: main
-  auth_type: implicit
-  app_id: Ov23lieIzLWddjAnNRQw
+  base_url: https://pdt-auth.vercel.app # O seu servidor de login
+  auth_endpoint: auth
 
 media_folder: "img/uploads"
 public_folder: "/img/uploads"
