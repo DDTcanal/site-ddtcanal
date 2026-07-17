@@ -1,275 +1,177 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal DDT - Novo Layout</title>
-    <style>
-        /* --- VARIÁVEIS E BASE (Cores Neon & Performance) --- */
-        :root {
-            --bg-color: #121212; /* Fundo Dark Moderno */
-            --card-bg: #1E1E1E;
-            --text-main: #FFFFFF;
-            --text-secondary: #B0B0B0;
-            --neon-yellow: #EBFF00; /* Amarelo Cyberpunk */
-            --neon-red: #FF2A2A;    /* Vermelho Vivo */
-            --gap: 20px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal DDT</title>
+<style>
+  :root{
+    --bg:#0b0d10;
+    --panel:#14171c;
+    --panel-2:#1c2028;
+    --line:#262b33;
+    --text:#e9edf2;
+    --muted:#8b93a1;
+    --accent:#ff4e3a;
+    --accent-2:#33e29a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'Segoe UI', system-ui, sans-serif;
+  }
+  header{
+    padding:18px 20px; display:flex; justify-content:space-between; align-items:center;
+    border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--bg); z-index:10;
+  }
+  header h1{ margin:0; font-size:20px; }
+  header h1 span{ color:var(--accent); }
+  header nav a{
+    color:var(--muted); text-decoration:none; font-size:13px; font-weight:600;
+    margin-left:18px;
+  }
+  header nav a:hover{ color:var(--accent); }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow-x: hidden;
-        }
+  section{ padding:28px 20px; max-width:960px; margin:0 auto; }
+  .eyebrow{
+    color:var(--accent); font-size:12px; font-weight:700; letter-spacing:1px;
+    text-transform:uppercase; margin-bottom:8px;
+  }
+  h2{ font-size:22px; margin:0 0 18px; }
 
-        /* --- HEADER (Existente) --- */
-        header {
-            background: #000;
-            padding: 20px;
-            border-bottom: 2px solid var(--neon-yellow);
-            text-align: center;
-        }
-        
-        /* --- ACTION BAR (Ofertas & Downloads) --- */
-        .action-bar {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            padding: 15px 0;
-            background: rgba(30, 30, 30, 0.8);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid #333;
-        }
+  .grid{ display:grid; gap:16px; grid-template-columns:1fr; }
+  @media(min-width:640px){ .grid{ grid-template-columns:1fr 1fr; } }
 
-        .action-btn {
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    overflow:hidden;
+  }
+  .card img{ width:100%; height:160px; object-fit:cover; display:block; }
+  .card .body{ padding:14px 16px; }
+  .card h3{ margin:0 0 6px; font-size:15px; }
+  .card p{ margin:0; color:var(--muted); font-size:13px; line-height:1.5; }
+  .card .tag{ color:var(--accent-2); font-size:11px; font-weight:700; text-transform:uppercase; }
 
-        .action-btn.ofertas:hover { background: var(--neon-yellow); color: #000; box-shadow: 0 0 15px var(--neon-yellow); }
-        .action-btn.downloads:hover { background: var(--neon-red); color: #000; box-shadow: 0 0 15px var(--neon-red); }
+  .dl-item{
+    display:flex; justify-content:space-between; align-items:center; gap:12px;
+    background:var(--panel); border:1px solid var(--line); border-radius:12px;
+    padding:14px 16px; margin-bottom:10px;
+  }
+  .dl-item h3{ margin:0 0 4px; font-size:14px; }
+  .dl-item p{ margin:0; color:var(--muted); font-size:12px; }
+  .dl-item a{
+    background:var(--accent); color:#1a0a06; text-decoration:none; font-weight:700;
+    font-size:12px; padding:8px 14px; border-radius:8px; flex-shrink:0;
+  }
 
-        /* --- LAYOUT PRINCIPAL --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+  .empty{ color:var(--muted); font-size:13px; }
 
-        /* --- HERO SECTION (As duas notícias grandes) --- */
-        .hero-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* Desktop: 50% 50% */
-            gap: var(--gap);
-            margin-bottom: 60px;
-        }
-
-        .hero-card {
-            position: relative;
-            height: 450px;
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            group: 'hero';
-        }
-
-        .hero-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .hero-card:hover img { transform: scale(1.05); }
-
-        .hero-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 30px;
-            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
-        }
-
-        .hero-tag {
-            background: var(--neon-red);
-            color: white;
-            padding: 4px 10px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-
-        .hero-title { font-size: 2rem; font-weight: 800; line-height: 1.2; margin-bottom: 10px; }
-        .hero-desc { font-size: 1rem; color: #ddd; display: block; }
-
-        /* --- BLOCOS TEMÁTICOS --- */
-        .section-header {
-            border-left: 5px solid var(--neon-yellow);
-            padding-left: 15px;
-            margin-bottom: 20px;
-            margin-top: 40px;
-        }
-        
-        .section-title { font-size: 1.8rem; font-weight: 700; text-transform: uppercase; }
-
-        .blocks-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--gap);
-        }
-
-        .small-card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .small-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            border-bottom: 3px solid var(--neon-yellow);
-        }
-
-        .small-card img { width: 100%; height: 200px; object-fit: cover; }
-        .small-card-body { padding: 15px; }
-        .small-card h3 { font-size: 1.2rem; margin-bottom: 8px; }
-        .small-card p { font-size: 0.9rem; color: var(--text-secondary); }
-
-        /* --- CANAL DDT (Vídeo) --- */
-        .video-block {
-            grid-column: 1 / -1; /* Ocupa toda a largura */
-            background: #000;
-            border: 1px solid #333;
-            padding: 20px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        /* --- MOBILE LAYOUT (A mágica acontece aqui) --- */
-        @media (max-width: 768px) {
-            
-            /* Ajuste do Hero para Mobile */
-            .hero-section {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .hero-card {
-                height: 350px; /* Um pouco menor no mobile */
-                width: 100%;
-            }
-
-            /* Lógica da "Meia Notícia" / Translúcida */
-            .hero-card:nth-child(2) {
-                height: 200px; /* Menor visualmente */
-                opacity: 0.6; /* Translúcido como pedido */
-                transform: scale(0.98);
-                margin-top: -10px; /* Puxa um pouco para cima visualmente */
-                position: relative;
-
-                
-            }
-
-            .hero-title { font-size: 1.5rem; }
-            .hero-desc { display: none; /* Esconde descrição no mobile para limpar */ }
-            
-            /* Action Bar no rodapé ou topo fixo menor */
-            .action-bar { padding: 10px; gap: 15px; font-size: 0.8rem; }
-            
-            .video-block { flex-direction: column; }
-        }
-    </style>
+  footer{ text-align:center; padding:30px; color:var(--muted); font-size:12px; border-top:1px solid var(--line); }
+</style>
 </head>
 <body>
 
-    <header>
-        <h1>PORTAL DDT</h1>
-    </header>
+<header>
+  <h1>Portal <span>DDT</span></h1>
+  <nav>
+    <a href="#promocoes">Ofertas</a>
+    <a href="#downloads">Downloads</a>
+    <a href="#materias">Matérias</a>
+  </nav>
+</header>
 
-    <nav class="action-bar">
-        <a href="#" class="action-btn ofertas">🔥 Ofertas</a>
-        <a href="#" class="action-btn downloads">⬇ Downloads</a>
-    </nav>
+<section id="promocoes">
+  <div class="eyebrow">Ofertas</div>
+  <h2>Promoções em destaque</h2>
+  <div class="grid" id="grid-promocoes"><p class="empty">Carregando...</p></div>
+</section>
 
-    <main class="container">
-        
-        <section class="hero-section">
-            <article class="hero-card">
-                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" alt="Tech">
-                <div class="hero-content">
-                    <span class="hero-tag">Destaque</span>
-                    <h2 class="hero-title">A Revolução dos Processadores Híbridos chegou</h2>
-                    <p class="hero-desc">Análise completa do novo chip que promete mudar o mercado gamer.</p>
-                </div>
-            </article>
+<section id="downloads">
+  <div class="eyebrow">Downloads</div>
+  <h2>Arquivos disponíveis</h2>
+  <div id="lista-downloads"><p class="empty">Carregando...</p></div>
+</section>
 
-            <article class="hero-card">
-                <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=800&q=80" alt="Setup">
-                <div class="hero-content">
-                    <span class="hero-tag">Games</span>
-                    <h2 class="hero-title">Setup Gamer Minimalista: Guia 2025</h2>
-                    <p class="hero-desc">Como montar um espaço limpo, funcional e com RGB na medida certa.</p>
-                </div>
-            </article>
-        </section>
+<section id="materias">
+  <div class="eyebrow">Matérias</div>
+  <h2>Últimas publicações</h2>
+  <div class="grid" id="grid-materias"><p class="empty">Carregando...</p></div>
+</section>
 
-        <div class="section-header">
-            <h3 class="section-title">Tecnologia</h3>
+<footer>Portal DDT</footer>
+
+<script>
+  // ====== CONFIGURAÇÃO — cole aqui os mesmos dados usados no admin.html ======
+  const SUPABASE_URL = "https://snvkfftvzzcturktxzzv.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_C2icDBNskUgvLt-JOr8z9g_dzPZczJl";
+  // =============================================================================
+
+  async function api(path){
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+      }
+    });
+    if(!res.ok) throw new Error('Falha ao buscar dados');
+    return res.json();
+  }
+
+  async function carregarPromocoes(){
+    const el = document.getElementById('grid-promocoes');
+    try{
+      const rows = await api('promocoes?select=*&order=created_at.desc&limit=6');
+      if(!rows.length){ el.innerHTML = '<p class="empty">Nenhuma promoção no momento.</p>'; return; }
+      el.innerHTML = rows.map(r => `
+        <div class="card">
+          ${r.imagem_url ? `<img src="${r.imagem_url}" alt="">` : ''}
+          <div class="body">
+            <h3>${r.titulo}</h3>
+            <p>${r.descricao || ''}</p>
+          </div>
         </div>
-        <section class="blocks-grid">
-            <article class="small-card">
-                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=60" alt="">
-                <div class="small-card-body">
-                    <h3>Review: Novo Teclado Mecânico</h3>
-                    <p>Vale a pena investir em switches ópticos?</p>
-                </div>
-            </article>
-            <article class="small-card">
-                <img src="https://images.unsplash.com/photo-1526045431048-f857369baa09?auto=format&fit=crop&w=400&q=60" alt="">
-                <div class="small-card-body">
-                    <h3>IA nos Smartphones</h3>
-                    <p>O que muda na fotografia móvel este ano.</p>
-                </div>
-            </article>
-            </section>
+      `).join('');
+    } catch(e){ el.innerHTML = '<p class="empty">Não foi possível carregar as promoções.</p>'; }
+  }
 
-        <div class="section-header" style="border-color: var(--neon-red);">
-            <h3 class="section-title">Canal DDT</h3>
+  async function carregarDownloads(){
+    const el = document.getElementById('lista-downloads');
+    try{
+      const rows = await api('downloads?select=*&order=created_at.desc&limit=12');
+      if(!rows.length){ el.innerHTML = '<p class="empty">Nenhum download disponível.</p>'; return; }
+      el.innerHTML = rows.map(r => `
+        <div class="dl-item">
+          <div>
+            <h3>${r.titulo}</h3>
+            <p>${r.descricao || ''}</p>
+          </div>
+          <a href="${r.link_telegram}" target="_blank" rel="noopener">Baixar</a>
         </div>
-        <section class="video-block">
-            <div style="flex: 2;">
-                <div style="background: #333; height: 300px; display: flex; align-items: center; justify-content: center; color: #fff;">[IFRAME YOUTUBE AQUI]</div>
-            </div>
-            <div style="flex: 1;">
-                <h2 style="color: var(--neon-yellow);">Último Vídeo</h2>
-                <p style="margin-top: 10px; color: #ccc;">Acompanhe nossa análise completa sobre o hardware mais esperado do ano. Deixe seu like e inscreva-se.</p>
-                <button style="margin-top: 20px; padding: 10px 20px; background: var(--neon-red); border: none; color: white; font-weight: bold; cursor: pointer;">Ir para o Canal</button>
-            </div>
-        </section>
+      `).join('');
+    } catch(e){ el.innerHTML = '<p class="empty">Não foi possível carregar os downloads.</p>'; }
+  }
 
-    </main>
+  async function carregarMaterias(){
+    const el = document.getElementById('grid-materias');
+    try{
+      const rows = await api('materias?select=*&order=created_at.desc&limit=6');
+      if(!rows.length){ el.innerHTML = '<p class="empty">Nenhuma matéria publicada.</p>'; return; }
+      el.innerHTML = rows.map(r => `
+        <div class="card">
+          ${r.imagem_url ? `<img src="${r.imagem_url}" alt="">` : ''}
+          <div class="body">
+            ${r.categoria ? `<div class="tag">${r.categoria}</div>` : ''}
+            <h3>${r.titulo}</h3>
+            <p>${(r.conteudo || '').slice(0,120)}</p>
+          </div>
+        </div>
+      `).join('');
+    } catch(e){ el.innerHTML = '<p class="empty">Não foi possível carregar as matérias.</p>'; }
+  }
 
+  carregarPromocoes();
+  carregarDownloads();
+  carregarMaterias();
+</script>
 </body>
 </html>
