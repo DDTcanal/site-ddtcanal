@@ -14,28 +14,69 @@
     --muted:#8b93a1;
     --accent:#ff4e3a;
     --accent-2:#33e29a;
+    --shadow: 0 8px 30px rgba(0,0,0,0.35);
+  }
+  body.light{
+    --bg:#f7f7f9;
+    --panel:#ffffff;
+    --panel-2:#f0f1f4;
+    --line:#e3e5ea;
+    --text:#14171c;
+    --muted:#6b7280;
+    --shadow: 0 8px 24px rgba(20,23,28,0.08);
   }
   *{box-sizing:border-box;}
   body{
     margin:0; background:var(--bg); color:var(--text);
     font-family:'Segoe UI', system-ui, sans-serif;
+    transition:background .25s ease, color .25s ease;
   }
   header{
-    padding:18px 20px; display:flex; justify-content:space-between; align-items:center;
+    padding:16px 20px; display:flex; justify-content:space-between; align-items:center;
     border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--bg); z-index:10;
   }
-  header h1{ margin:0; font-size:20px; }
-  header h1 span{ color:var(--accent); }
-  header nav a{
-    color:var(--muted); text-decoration:none; font-size:13px; font-weight:600;
-    margin-left:18px;
+  .brand{
+    display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit;
+    cursor:pointer; background:none; border:none; padding:0;
   }
-  header nav a:hover{ color:var(--accent); }
+  .brand h1{ margin:0; font-size:20px; }
+  .brand h1 span{ color:var(--accent); }
+  .brand:hover h1 span{ text-shadow:0 0 14px var(--accent); }
 
-  section{ padding:28px 20px; max-width:960px; margin:0 auto; }
+  .header-right{ display:flex; align-items:center; gap:6px; }
+  nav{ display:flex; }
+  nav a{
+    color:var(--muted); text-decoration:none; font-size:13px; font-weight:600;
+    margin-left:18px; transition:color .15s ease;
+  }
+  nav a:hover{ color:var(--accent); }
+
+  .theme-toggle{
+    width:34px; height:34px; border-radius:50%; border:1px solid var(--line);
+    background:var(--panel-2); color:var(--text); display:flex; align-items:center;
+    justify-content:center; cursor:pointer; margin-left:16px; flex-shrink:0;
+    transition:box-shadow .2s ease, transform .2s ease;
+  }
+  .theme-toggle:hover{ box-shadow:0 0 16px rgba(255,183,3,0.45); transform:translateY(-1px); }
+  .theme-toggle svg{ width:17px; height:17px; }
+
+  section{ padding:36px 20px; max-width:960px; margin:0 auto; }
+  .eyebrow-row{ display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+  .icon-badge{
+    width:30px; height:30px; border-radius:9px; display:flex; align-items:center;
+    justify-content:center; background:var(--panel-2); border:1px solid var(--line);
+    flex-shrink:0;
+  }
+  .icon-badge svg{ width:16px; height:16px; }
+  .icon-badge.glow-accent{ box-shadow:0 0 18px -2px rgba(255,78,58,0.55); border-color:rgba(255,78,58,0.4); color:var(--accent); }
+  .icon-badge.glow-green{ box-shadow:0 0 18px -2px rgba(51,226,154,0.5); border-color:rgba(51,226,154,0.4); color:var(--accent-2); }
+  .icon-badge.glow-gold{ box-shadow:0 0 18px -2px rgba(255,183,3,0.5); border-color:rgba(255,183,3,0.4); color:#ffb703; }
+  .icon-badge.bounce svg{ animation:bounce 1.8s ease-in-out infinite; }
+  @keyframes bounce{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(3px); } }
+
   .eyebrow{
     color:var(--accent); font-size:12px; font-weight:700; letter-spacing:1px;
-    text-transform:uppercase; margin-bottom:8px;
+    text-transform:uppercase;
   }
   h2{ font-size:22px; margin:0 0 18px; }
 
@@ -44,8 +85,10 @@
 
   .card{
     background:var(--panel); border:1px solid var(--line); border-radius:14px;
-    overflow:hidden;
+    overflow:hidden; box-shadow:var(--shadow); transition:transform .18s ease, box-shadow .18s ease;
   }
+  .card[data-clickable]{ cursor:pointer; }
+  .card[data-clickable]:hover{ transform:translateY(-3px); box-shadow:0 10px 30px -4px rgba(255,78,58,0.35); }
   .card img{ width:100%; height:160px; object-fit:cover; display:block; }
   .card .body{ padding:14px 16px; }
   .card h3{ margin:0 0 6px; font-size:15px; }
@@ -55,18 +98,19 @@
   .dl-item{
     display:flex; justify-content:space-between; align-items:center; gap:12px;
     background:var(--panel); border:1px solid var(--line); border-radius:12px;
-    padding:14px 16px; margin-bottom:10px;
+    padding:14px 16px; margin-bottom:10px; box-shadow:var(--shadow);
+    transition:transform .18s ease, box-shadow .18s ease;
   }
+  .dl-item:hover{ transform:translateY(-2px); box-shadow:0 10px 26px -6px rgba(51,226,154,0.35); }
   .dl-item h3{ margin:0 0 4px; font-size:14px; }
   .dl-item p{ margin:0; color:var(--muted); font-size:12px; }
   .dl-item a{
     background:var(--accent); color:#1a0a06; text-decoration:none; font-weight:700;
     font-size:12px; padding:8px 14px; border-radius:8px; flex-shrink:0;
+    box-shadow:0 4px 14px -2px rgba(255,78,58,0.55);
   }
 
   .empty{ color:var(--muted); font-size:13px; }
-
-  .card[data-clickable]{ cursor:pointer; }
 
   .modal-overlay{
     display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75);
@@ -76,7 +120,7 @@
   .modal-overlay.open{ display:flex; }
   .modal-box{
     background:var(--panel); border:1px solid var(--line); border-radius:14px;
-    max-width:640px; width:100%; margin-top:30px; overflow:hidden;
+    max-width:640px; width:100%; margin-top:30px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.5);
   }
   .modal-box img{ width:100%; max-height:280px; object-fit:cover; display:block; }
   .modal-box .body{ padding:20px; }
@@ -92,31 +136,53 @@
   footer{ text-align:center; padding:30px; color:var(--muted); font-size:12px; border-top:1px solid var(--line); }
 </style>
 </head>
-<body>
+<body id="top">
 
 <header>
-  <h1>Portal <span>DDT</span></h1>
-  <nav>
-    <a href="#promocoes">Ofertas</a>
-    <a href="#downloads">Downloads</a>
-    <a href="#materias">Matérias</a>
-  </nav>
+  <a class="brand" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+    <h1>Portal <span>DDT</span></h1>
+  </a>
+  <div class="header-right">
+    <nav>
+      <a href="#promocoes">Ofertas</a>
+      <a href="#downloads">Downloads</a>
+      <a href="#materias">Matérias</a>
+    </nav>
+    <button class="theme-toggle" id="theme-toggle" onclick="alternarTema()" aria-label="Alternar tema claro/escuro">
+      <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
+    </button>
+  </div>
 </header>
 
 <section id="promocoes">
-  <div class="eyebrow">Ofertas</div>
+  <div class="eyebrow-row">
+    <div class="icon-badge glow-accent">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>
+    </div>
+    <div class="eyebrow">Ofertas</div>
+  </div>
   <h2>Promoções em destaque</h2>
   <div class="grid" id="grid-promocoes"><p class="empty">Carregando...</p></div>
 </section>
 
 <section id="downloads">
-  <div class="eyebrow">Downloads</div>
+  <div class="eyebrow-row">
+    <div class="icon-badge glow-green bounce">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12"/><path d="M6 12l6 6 6-6"/><path d="M5 21h14"/></svg>
+    </div>
+    <div class="eyebrow" style="color:var(--accent-2)">Downloads</div>
+  </div>
   <h2>Arquivos disponíveis</h2>
   <div id="lista-downloads"><p class="empty">Carregando...</p></div>
 </section>
 
 <section id="materias">
-  <div class="eyebrow">Matérias</div>
+  <div class="eyebrow-row">
+    <div class="icon-badge glow-gold">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8a2 2 0 0 1 2 2v14l-3-2-3 2-3-2-3 2V5a2 2 0 0 1 2-2z"/><path d="M9 8h6"/><path d="M9 12h6"/></svg>
+    </div>
+    <div class="eyebrow" style="color:#ffb703">Matérias</div>
+  </div>
   <h2>Últimas publicações</h2>
   <div class="grid" id="grid-materias"><p class="empty">Carregando...</p></div>
 </section>
@@ -136,10 +202,22 @@
 </div>
 
 <script>
-  // ====== CONFIGURAÇÃO — cole aqui os mesmos dados usados no admin.html ======
   const SUPABASE_URL = "https://snvkfftvzzcturktxzzv.supabase.co";
   const SUPABASE_ANON_KEY = "sb_publishable_C2icDBNskUgvLt-JOr8z9g_dzPZczJl";
-  // =============================================================================
+
+  const SOL = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.9 4.9l1.4 1.4"/><path d="M17.7 17.7l1.4 1.4"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M4.9 19.1l1.4-1.4"/><path d="M17.7 6.3l1.4-1.4"/>';
+  const LUA = '<path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/>';
+
+  function aplicarIconeTema(){
+    const icon = document.getElementById('theme-icon');
+    const claro = document.body.classList.contains('light');
+    icon.innerHTML = claro ? LUA : SOL;
+  }
+  function alternarTema(){
+    document.body.classList.toggle('light');
+    aplicarIconeTema();
+  }
+  aplicarIconeTema();
 
   function extrairThumbYoutube(url){
     if(!url) return url;
@@ -166,9 +244,7 @@
 
   async function api(path){
     const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
-      headers: {
-        'apikey': SUPABASE_ANON_KEY
-      }
+      headers: { 'apikey': SUPABASE_ANON_KEY }
     });
     if(!res.ok) throw new Error('Falha ao buscar dados');
     return res.json();
