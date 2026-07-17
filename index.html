@@ -66,6 +66,29 @@
 
   .empty{ color:var(--muted); font-size:13px; }
 
+  .card[data-clickable]{ cursor:pointer; }
+
+  .modal-overlay{
+    display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75);
+    z-index:50; align-items:flex-start; justify-content:center; padding:20px 14px;
+    overflow-y:auto;
+  }
+  .modal-overlay.open{ display:flex; }
+  .modal-box{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    max-width:640px; width:100%; margin-top:30px; overflow:hidden;
+  }
+  .modal-box img{ width:100%; max-height:280px; object-fit:cover; display:block; }
+  .modal-box .body{ padding:20px; }
+  .modal-box .tag{ color:var(--accent-2); font-size:11px; font-weight:700; text-transform:uppercase; }
+  .modal-box h2{ font-size:19px; margin:8px 0 14px; }
+  .modal-box .texto{ color:var(--text); font-size:14px; line-height:1.7; white-space:pre-wrap; }
+  .modal-close{
+    display:block; margin:16px 20px 20px auto; background:var(--panel-2);
+    border:1px solid var(--line); color:var(--text); padding:9px 16px;
+    border-radius:8px; font-size:13px; cursor:pointer;
+  }
+
   footer{ text-align:center; padding:30px; color:var(--muted); font-size:12px; border-top:1px solid var(--line); }
 </style>
 </head>
@@ -100,11 +123,46 @@
 
 <footer>Portal DDT</footer>
 
+<div class="modal-overlay" id="modal-materia" onclick="fecharModal(event)">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <img id="modal-img" src="" alt="" style="display:none">
+    <div class="body">
+      <div class="tag" id="modal-categoria" style="display:none"></div>
+      <h2 id="modal-titulo"></h2>
+      <div class="texto" id="modal-texto"></div>
+    </div>
+    <button class="modal-close" onclick="fecharModal()">Fechar</button>
+  </div>
+</div>
+
 <script>
   // ====== CONFIGURAÇÃO — cole aqui os mesmos dados usados no admin.html ======
   const SUPABASE_URL = "https://snvkfftvzzcturktxzzv.supabase.co";
   const SUPABASE_ANON_KEY = "sb_publishable_C2icDBNskUgvLt-JOr8z9g_dzPZczJl";
   // =============================================================================
+
+  function extrairThumbYoutube(url){
+    if(!url) return url;
+    const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|shorts\/|embed\/))([a-zA-Z0-9_-]{11})/);
+    return m ? `https://img.youtube.com/vi/${m[1]}/hqdefault.jpg` : url;
+  }
+
+  let materiasCache = [];
+  function abrirMateria(i){
+    const r = materiasCache[i];
+    const img = document.getElementById('modal-img');
+    if(r.imagem_url){ img.src = extrairThumbYoutube(r.imagem_url); img.style.display='block'; }
+    else { img.style.display='none'; }
+    const tag = document.getElementById('modal-categoria');
+    if(r.categoria){ tag.textContent = r.categoria; tag.style.display='block'; }
+    else { tag.style.display='none'; }
+    document.getElementById('modal-titulo').textContent = r.titulo;
+    document.getElementById('modal-texto').textContent = r.conteudo || '';
+    document.getElementById('modal-materia').classList.add('open');
+  }
+  function fecharModal(){
+    document.getElementById('modal-materia').classList.remove('open');
+  }
 
   async function api(path){
     const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
@@ -123,7 +181,7 @@
       if(!rows.length){ el.innerHTML = '<p class="empty">Nenhuma promoção no momento.</p>'; return; }
       el.innerHTML = rows.map(r => `
         <div class="card">
-          ${r.imagem_url ? `<img src="${r.imagem_url}" alt="">` : ''}
+          ${r.imagem_url ? `<img src="${extrairThumbYoutube(r.imagem_url)}" alt="">` : ''}
           <div class="body">
             <h3>${r.titulo}</h3>
             <p>${r.descricao || ''}</p>
@@ -155,9 +213,10 @@
     try{
       const rows = await api('materias?select=*&order=created_at.desc&limit=6');
       if(!rows.length){ el.innerHTML = '<p class="empty">Nenhuma matéria publicada.</p>'; return; }
-      el.innerHTML = rows.map(r => `
-        <div class="card">
-          ${r.imagem_url ? `<img src="${r.imagem_url}" alt="">` : ''}
+      materiasCache = rows;
+      el.innerHTML = rows.map((r, i) => `
+        <div class="card" data-clickable onclick="abrirMateria(${i})">
+          ${r.imagem_url ? `<img src="${extrairThumbYoutube(r.imagem_url)}" alt="">` : ''}
           <div class="body">
             ${r.categoria ? `<div class="tag">${r.categoria}</div>` : ''}
             <h3>${r.titulo}</h3>

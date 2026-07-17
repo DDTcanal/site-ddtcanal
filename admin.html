@@ -120,8 +120,8 @@
         <input id="p_titulo" placeholder="Ex: Placa de vídeo com 30% off">
         <label>Descrição</label>
         <textarea id="p_descricao" placeholder="Detalhes da promoção"></textarea>
-        <label>URL da imagem (opcional)</label>
-        <input id="p_imagem" placeholder="https://...">
+        <label>Imagem: link direto (.jpg/.png) ou link do vídeo do YouTube</label>
+        <input id="p_imagem" placeholder="https://... ou link do YouTube">
         <button class="btn" onclick="publicar('promocoes')">Publicar promoção</button>
         <p class="msg" id="msg_promocoes"></p>
       </div>
@@ -137,8 +137,8 @@
         <input id="m_categoria" placeholder="Ex: Tecnologia, Games">
         <label>Conteúdo</label>
         <textarea id="m_conteudo" placeholder="Texto da matéria"></textarea>
-        <label>URL da imagem (opcional)</label>
-        <input id="m_imagem" placeholder="https://...">
+        <label>Imagem: link direto (.jpg/.png) ou link do vídeo do YouTube</label>
+        <input id="m_imagem" placeholder="https://... ou link do YouTube">
         <button class="btn" onclick="publicar('materias')">Publicar matéria</button>
         <p class="msg" id="msg_materias"></p>
       </div>
@@ -208,6 +208,12 @@
     return res.status === 204 ? null : res.json();
   }
 
+  function extrairThumbYoutube(url){
+    if(!url) return url;
+    const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|shorts\/|embed\/))([a-zA-Z0-9_-]{11})/);
+    return m ? `https://img.youtube.com/vi/${m[1]}/hqdefault.jpg` : url;
+  }
+
   async function publicar(tabela){
     const msgEl = document.getElementById('msg_'+tabela);
     msgEl.className = 'msg'; msgEl.textContent = 'Publicando...';
@@ -217,14 +223,14 @@
         body = {
           titulo: document.getElementById('p_titulo').value,
           descricao: document.getElementById('p_descricao').value,
-          imagem_url: document.getElementById('p_imagem').value
+          imagem_url: extrairThumbYoutube(document.getElementById('p_imagem').value)
         };
       } else if(tabela === 'materias'){
         body = {
           titulo: document.getElementById('m_titulo').value,
           categoria: document.getElementById('m_categoria').value,
           conteudo: document.getElementById('m_conteudo').value,
-          imagem_url: document.getElementById('m_imagem').value
+          imagem_url: extrairThumbYoutube(document.getElementById('m_imagem').value)
         };
       } else if(tabela === 'downloads'){
         body = {
