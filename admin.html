@@ -165,8 +165,8 @@
 <script>
   // ====== CONFIGURAÇÃO — cole aqui os dados do seu projeto Supabase ======
   const SUPABASE_URL = "https://snvkfftvzzcturktxzzv.supabase.co";
-  const SUPABASE_ANON_KEY = "sb_publbishable_C2icDBNskUgvLt-JOr8z9g_dzPZczJl";
-  const PAINEL_SENHA = "19079403"; // senha para abrir o painel
+  const SUPABASE_ANON_KEY = "sb_publishable_C2icDBNskUgvLt-JOr8z9g_dzPZczJl";
+  const PAINEL_SENHA = "19079403ddt"; // senha para abrir o painel
   // ==========================================================================
 
   function tryUnlock(){
@@ -199,7 +199,6 @@
       ...options,
       headers: {
         'apikey': SUPABASE_ANON_KEY,
-        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
         'Content-Type': 'application/json',
         'Prefer': 'return=representation',
         ...(options.headers||{})
